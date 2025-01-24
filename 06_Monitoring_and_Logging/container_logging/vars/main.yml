@@ -1,0 +1,14 @@
+
+
+# Variables for the instance monitoring setup
+project: "{{ lookup('env', 'PROJECT') }}"
+provider: "{{ lookup('env', 'PROVIDER') }}"
+
+# Vault related variables
+vault_url: "{{ lookup('env', 'TF_VAR_vault_url') }}"
+vault_token: "{{ lookup('env', 'VAULT_TOKEN') }}"
+
+# Loki related variables
+loki_user: "{{ lookup('hashi_vault', 'secret=infrastructure/data/monitoring/loki:basic_auth_user token=' + vault_token + ' url=' + vault_url)}}"
+loki_password: "{{ lookup('hashi_vault', 'secret=infrastructure/data/monitoring/loki:basic_auth_password token=' + vault_token + ' url=' + vault_url) }}"
+loki_url: "{{ lookup('hashi_vault', 'secret=infrastructure/data/monitoring/loki:loki_base_url token=' + vault_token + ' url=' + vault_url) }}"

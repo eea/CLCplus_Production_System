@@ -1,8 +1,5 @@
-from src.api import api as app
-
 ########################################################################################################################
-# Starting the app with Gunicorn
+# Maximum number of iterations for the retry in case of a connection error
 ########################################################################################################################
 
-if __name__ == "__main__":
-    app.run()
+LIMIT_RETRIES = 5

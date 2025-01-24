@@ -1,57 +1,98 @@
+from typing import Optional
+
+from pydantic import BaseSettings, Field, BaseModel
+
+
 ########################################################################################################################
-#
-# API Gateway config file
-#
-# Date created: 21.10.2019
-# Date last modified: 29.10.2019
-#
-# __author__  = Michel Schwandner (schwandner@geoville.com)
-# __version__ = 19.10.1
 #
 ########################################################################################################################
 
-from database.database_methods import get_database_connection_str
-import os
+class AppConfig(BaseModel):
+    """Application configurations."""
+
+    # Prefix for AWS Load balancer setting
+    VAULT_AUTH_MOUNT: str = "approle-clcplus_rasterupdate"
+
+    # URL path for API specs
+    DOCS_PATH: str = "/v1"
+    REDOCS_PATH: str = "/redoc/v1"
+
+    # Hashicorp Vault static secret paths
+    SECRET_MOUNT: str = "projects"
+    SECRET_PATH: str = "clcplus_rasterupdate/apis/general_secrets"
 
 
 ########################################################################################################################
-# General configuration class
+#
 ########################################################################################################################
 
-class Config(object):
+class GlobalConfig(BaseSettings):
+    """ Global configurations
 
-    DEBUG = False
-    TESTING = False
-    SECRET_KEY = 'secret'
-    OAUTH2_REFRESH_TOKEN_GENERATOR = True
-    OAUTH2_TOKEN_EXPIRES_IN = {
-        'password': os.environ.get('BEARER_TOKEN_EXPIRATION_TIME'),
-        'refresh_token': os.environ.get('REFRESH_TOKEN_EXPIRATION_TIME'),
-    }
-    DATABASE_CONFIG_FILE = os.environ.get('DATABASE_CONFIG_FILE')
-    DATABASE_CONFIG_FILE_SECTION = os.environ.get('DATABASE_CONFIG_FILE_SECTION')
-    SQLALCHEMY_DATABASE_URI = get_database_connection_str(DATABASE_CONFIG_FILE, DATABASE_CONFIG_FILE_SECTION)
+    These variables will be loaded from the .env file. However, if there is a shell environment variable having the same
+    name, that will take precedence.
+
+    """
+
+    APP_CONFIG: AppConfig = AppConfig()
+
+    # define global variables with the Field class
+    ENV_STATE: Optional[str] = Field(None, env="ENV_STATE")
+
+    # Hashicorp Vault relevant variables loaded from environment variables
+    VAULT_URL: Optional[str]
+    VAULT_TOKEN: Optional[str]
+    VAULT_ROLE_ID: Optional[str]
+    VAULT_SECRET_ID: Optional[str]
+
+    class Config:
+        """Loads the dotenv file."""
+
+        env_file: str = ".env"
 
 
 ########################################################################################################################
-# Production configuration class
+#
 ########################################################################################################################
 
-class ProductionConfig(Config):
+class DevConfig(GlobalConfig):
+    """Development configurations."""
 
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_ECHO = False
+    class Config:
+        env_prefix: str = "dev_"
 
 
 ########################################################################################################################
-# Development configuration class
+#
 ########################################################################################################################
 
-class DevelopmentConfig(Config):
+class ProdConfig(GlobalConfig):
+    """Production configurations."""
 
-    DEBUG = True
-    PORT = 5000
-    HOST = '0.0.0.0'
+    class Config:
+        env_prefix: str = "prod_"
 
-    SQLALCHEMY_TRACK_MODIFICATIONS = True
-    SQLALCHEMY_ECHO = True
+
+########################################################################################################################
+#
+########################################################################################################################
+
+class FactoryConfig:
+    """Returns a config instance depending on the ENV_STATE variable."""
+
+    def __init__(self, env_state: Optional[str]):
+        self.env_state = env_state
+
+    def __call__(self):
+        if self.env_state == "dev":
+            return DevConfig()
+
+        elif self.env_state == "prod":
+            return ProdConfig()
+
+
+########################################################################################################################
+# Instantiation of configuration object
+########################################################################################################################
+
+cnf = FactoryConfig(GlobalConfig().ENV_STATE)()

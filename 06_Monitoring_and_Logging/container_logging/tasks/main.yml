@@ -1,0 +1,25 @@
+
+
+- name: Create directory
+  ansible.builtin.file:
+    path: /root/services/promtail/
+    state: directory
+    mode: 0777
+
+- name: Copy file to server
+  ansible.builtin.template:
+    src: config.yaml.j2
+    dest: /root/services/promtail/config.yml
+    mode: 0777
+
+- name: Start promtail docker container
+  community.docker.docker_container:
+    name: promtail
+    image: grafana/promtail:2.7.4
+    restart_policy: always
+    restart: true
+    volumes:
+      - /var/lib/docker/containers:/var/lib/docker/containers
+      - /root/services/promtail/config.yml:/etc/promtail/config.yml
+    command:
+      - '-config.file=/etc/promtail/config.yml'

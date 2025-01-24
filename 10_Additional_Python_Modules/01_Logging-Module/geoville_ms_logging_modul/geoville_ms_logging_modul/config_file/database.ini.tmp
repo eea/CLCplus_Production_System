@@ -1,5 +1,0 @@
-[postgresql]
-host=dev.services.geoville.com
-database=postgres
-user=postgres
-password=XXX

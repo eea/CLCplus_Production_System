@@ -6,11 +6,12 @@
 * Johannes Schmid
 * Samuel Carraro
 * Patrick Wolf
+* Rafael Reder
 
 ## BACKBONE SYSTEM  - MANUAL API
 
-- Issue: 1.1
-- Date: 23/05/2022
+- Issue: 2.0
+- Date: 24/01/2025
 - Compiled by: GEOVILLE & GAF AG
 
 ### Document Description
@@ -20,9 +21,9 @@
 |Document Title| Backbone System Manual: API |
 |Project Title| Copernicus Land Monitoring Service – CLC+ Backbone Production, including Raster and Vector Products based on Satellite Input Data from 2017/2018/2019|
 |Document Author(s)| GAF AG and GeoVille |
-|Project Owner| Hans Dufourmont (EEA) |
-|Project Manager| Tobias Langanke (EEA)|
-|Doc. Issue/Version| 1.1 |
+|Project Owner| Manuel Mayr (EEA) |
+|Project Manager| Fabian Berndt (GAF)|
+|Doc. Issue/Version| 2.0 |
 |Date| 23/05/2022 |
 |Distribution List| Consortium and EEA |
 |Confidentiality| - |
@@ -31,17 +32,17 @@
 
 | Name | Role | Date |
 |--|--|--|
-|Johannes Schmid (GeoVille)|Creation| 19/11/2021
-|Tanja Gasber (GeoVille)|Creation| 19/11/2021
-|Inés Ruiz  (GAF)|Revision|-|
-|Tobias Langanke (EEA) (GAF)|Approval|-|
+|Johannes Schmid (GeoVille)|Creation| 24/01/2025
+|Fabian Berndt  (GAF)|Revision|-|
+|Manuel Mayr (EEA) (GAF)|Approval|-|
 
-### Document History & Change Record
+  ### Document History & Change Record
 
-| Issue / Version | Release Date | Created by | Description of Issue / Change(s)|
-|--|--|--|--|
-|1.0|18.12.2021GeoVille / GAF AG |-|
-|1.1|-|GAF / GeoVille|Vector products|
+  | Issue / Version | Release Date | Created by | Description of Issue / Change(s)|
+  |--|--|--|--|
+  |1.0|18.12.2021GeoVille / GAF AG |-|
+  |1.1|-|GAF / GeoVille|Vector products|
+  |2.0|-|GeoVille GmbH
 
 ### Table of Contents
 
@@ -83,82 +84,10 @@ https://api.clcplusbackbone.geoville.com/v1/
 
 * Click - “Try it out” button. When clicking this button, the black window box turns white (Figure 1) allowing the insertion of credentials. 
 
-![Figure 1:The SWAGGER Endpoint for creating a bearer token (1)](img/image001.png)
-<em><br/>Figure 1: The SWAGGER Endpoint for creating a bearer token (1).</em>
+![Figure 1:Overview of the available endpoints](img/image.png)
+<em><br/>Figure 1: Overview of the available endpoints.</em>
 
-* Insert the requested credentials in the payload white box (Figure 2). 
-* Once inserted, click on the “Execute” button (Figure 2).
-
-![Figure 2:The SWAGGER Endpoint for creating a bearer token (2)](img/image002.png)
-<em><br/>Figure 2: The SWAGGER Endpoint for creating a bearer token (2).</em>
-
-It will look similar to the following curl example:
-
-![Figure 3:Figure 3: Curl Example)](img/image003.png)
-<em><br/>Figure 3: Curl Example.</em>
-
-After running “Execute”, a successful response (200) returns a valid token, which will be valid at the moment
-for 100 days. After its implementation in the CLMS portal, this value will be adjusted to a value compatible
-to security guidelines. The access token needs to be then copied for the next step.
-
-![Figure 4:Access Token needed to be copied](img/image004.png)
-<em><br/>Figure 4: Access Token needed to be copied.</em>
-
-#### 3.2 Step 2: Order of the packaging into Raster or Vector
-
-In order to call for a product, three endpoints can be used:
-
-* /products/get_product
-* /products/get_national_product
-* /products/get_product_europe
-
-While requesting products with „get_product“ requires an Area of Interest (AoI), the „get_national_product“
-endpoint requires the name of the desired country. The endpoint „get_product_europe“ does not need any
-spatial information, because it returns the product for entire Europe.
-
-In contrast to the other requests, „get_national_product“ does not return data in the projection LAEA (EPSG:
-3035) but in the respective national projection.
-
-While requesting the Raster product returns one GeoTiff regardless of the endpoint, the Vector product will
-be provided by a list of GeoPackages due to the data size and the performance of Geographical Information
-Systems.
-
-In the following example, a product will be requested by providing an AoI. The example will be executed on
-Swagger, the API documentation. The execution of the remaining two endpoints only differ in regard to the
-request payload.
-
-**➔ Products (Order final products)**
-
-**POST** /products/get_products
-
-* Click the “Try it out” button. When clicking it, the black window box turns white, allowing the insertion of credentials. (Figure 5).
-* While being enabled, insert the access token into the Authorization box. Please note that it has to be written as: “Bearer” Access_token
-* First, select the product type:
-  * Raster
-  * Vector
-* Second, provide the AoI as Well-known text (WKT) in WGS84 (EPSG: 4326).
-* Finally, add the user_id
-
-After doing so, click on the “Execute” button. The system will prepare the product in the backend by cutting
-the data cubes and converting it into an OGC conformal GeoTIFF for the Raster and GeoPackage for the
-Vector Product. The output prjection is LAEA (EPSG: 3035).
-
-
-![Figure 5:The SWAGGER Endpoint for getting the product](img/image005.png)
-<em><br/>Figure 5: The SWAGGER Endpoint for getting the product.</em>
-
-The respective curl command would look as follows (Figure 6). 
-
-![Figure 6: Raster Order Curl example](img/image006.png)
-<em><br/>Figure 6: Raster Order Curl example.</em>
-
-After the product was successfully ordered, the system schedules the extraction and starts to process the
-data.
-
-The order status can be retrieved by using the “/services/order_status” endpoint. This endpoint requires
-the order ID which was received from the former POST request (see the red box in Figure 7).
-
-![Figure 7:Succesful response to order raster product](img/image007.png)
+![Figure 2:Succesful response to order raster product](img/image-1.png)
 <em><br/>Figure 7: Succesful response to order raster product.</em>
 
 #### 3.3 Step 3: Checking the status of the Order
@@ -186,20 +115,7 @@ compared to Vector ones).
 * Provide the order_id from step 2.
 * After doing so, click on the “Execute” button. In case the Order is successful the Response will carry the result paths to the S3 object-store at WEkEO.
 
-![Figure 8:The SWAGGER Endpoint for checking the status of the order](img/image008.png)
-<em><br/>Figure 8: The SWAGGER Endpoint for checking the status of the order.</em>
-
-A Curl example for a status check of an order with the order_id d371e64324033b2d8cd0a35a9d693975
-would look as in the figure below.
-
-![Figure 9:Curl example for specific order_id](img/image009.png)
-<em><br/>Figure 9: Curl example for specific order_id.</em>
-
-In case the order is successful the response will carry a link that allows the user to download the result from
-the S3 object-store at WEkEO.
-
-
-![Figure 10:Example of Successful order](img/image010.png)
+![Figure 10:Example of Successful order](img/image-2.png)
 <em><br/>Figure 10: Example of Successful order.</em>
 
 ### Step 4: Downloading the Product
@@ -207,20 +123,6 @@ the S3 object-store at WEkEO.
 To download the product to the customer from the S3 storage. For this procedure, @WEkEO standard S3
 mechanisms can be implemented. Note that the Filename is of your response.
 
-**Here the example with boto3 and Python:**
-
-* The access_key_id = “bc8e686837c2476ba4dcef06ba7272ca
-* The secret_access_key = “2e7516dc941f4bdcae1204d51c354bee”
-
-![Figure 11: Example of Successful order](img/image011.png)
-<em><br/>Figure 11: Example of Successful order.</em>
-
-➔ Please copy the product id from Step 4 into the red box and add a path and filename where you want to save your data.
-
-The data itself will contain the following files:
-
-![Figure 12: Files of downloaded data](img/image012.png)
-<em><br/>Figure 12: Files of downloaded data.</em>
 
 ### 5. Example Visualization within QGIS of the Raster data and the Vector data
 
