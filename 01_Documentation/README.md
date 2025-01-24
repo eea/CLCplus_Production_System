@@ -19,7 +19,7 @@
 | Settings | Value |
 |--|--|
 |Document Title| Backbone System Manual: API |
-|Project Title| Copernicus Land Monitoring Service – CLC+ Backbone Production, including Raster and Vector Products based on Satellite Input Data from 2017/2018/2019|
+|Project Title| Copernicus Land Monitoring Service – CLCplus Backbone Production, including Raster and Vector Products based on Satellite Input Data from 2017/2018/2019|
 |Document Author(s)| GAF AG and GeoVille |
 |Project Owner| Manuel Mayr (EEA) |
 |Project Manager| Fabian Berndt (GAF)|
@@ -58,11 +58,11 @@
 
 ### 1. Executive Summary
 
-This manual is intended to aim as step by step how-to for accessing and using the CLC+ Backbone “get_Product
+This manual is intended to aim as step by step how-to for accessing and using the CLCplus Backbone “get_Product
 API”. This API Endpoint will provide access to the products (i.e., Raster or Vector) stored within the WEkEO
-CLC+ Backbone Data store (NetCDF with HDF5).
+CLCplus Backbone Data store (NetCDF with HDF5).
 
-By using this document an implementation of the CLC+ Backbone Product API into the Copernicus Land
+By using this document an implementation of the CLCplus Backbone Product API into the Copernicus Land
 Monitoring System can be achieved.
 
 ### 2. EEAs Credentials

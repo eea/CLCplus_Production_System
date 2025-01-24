@@ -1,0 +1,12 @@
+pidfile = '/src/api.pid'
+proc_name = 'api'
+workers = 4
+worker_class = 'uvicorn.workers.UvicornWorker'
+max_requests = 500
+bind = '0.0.0.0:8080'
+backlog = 2048
+capture_output = True
+accesslog = '-'
+errorlog = '-'
+timeout = 1200
+keepalive = 2
