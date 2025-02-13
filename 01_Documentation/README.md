@@ -1,8 +1,9 @@
-## Documentation
+# Documentation Backbone System 2021
 
 ---
 
 ## Contributors
+
 * Johannes Schmid
 * Samuel Carraro
 * Patrick Wolf
@@ -10,9 +11,9 @@
 
 ## BACKBONE SYSTEM  - MANUAL API
 
-- Issue: 2.0
-- Date: 24/01/2025
-- Compiled by: GEOVILLE & GAF AG
+* Issue: 2.0
+* Date: 24/01/2025
+* Compiled by: GEOVILLE & GAF AG
 
 ### Document Description
 
@@ -28,7 +29,7 @@
 |Distribution List| Consortium and EEA |
 |Confidentiality| - |
 
-### Document Release Sheet 
+### Document Release Sheet
 
 | Name | Role | Date |
 |--|--|--|
@@ -36,25 +37,24 @@
 |Fabian Berndt  (GAF)|Revision|-|
 |Manuel Mayr (EEA) (GAF)|Approval|-|
 
-  ### Document History & Change Record
+### Document History & Change Record
 
   | Issue / Version | Release Date | Created by | Description of Issue / Change(s)|
   |--|--|--|--|
-  |1.0|18.12.2021GeoVille / GAF AG |-|
+  |1.0|18.12.2021GeoVille / GAF AG |-|-|
   |1.1|-|GAF / GeoVille|Vector products|
-  |2.0|-|GeoVille GmbH
+  |2.0|-|GeoVille GmbH|-|
 
 ### Table of Contents
 
-* 1. Executive Summary
-* 2. EEAs Credentials
-* 3. Ordering Steps 
-  * 1. Step 1: Get a bearer token 
-  * 2. Step 2: Order of the packaging into Raster or Vector 
-  * 3. Step 3: Checking the status of the Order 
-* 4. Step 4: Downloading the Product
-* 5. Example Visualization within QGIS of the Raster data and the Vector data
-
+1. Executive Summary
+2. EEAs Credentials
+3. Ordering Steps 
+  * Step 1: Get a bearer token 
+  * Step 2: Order of the packaging into Raster or Vector 
+  * Step 3: Checking the status of the Order 
+4. Step 4: Downloading the Product
+5. Example Visualization within QGIS of the Raster data and the Vector data
 
 ### 1. Executive Summary
 
