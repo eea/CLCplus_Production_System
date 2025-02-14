@@ -1,0 +1,11 @@
+fastapi==0.101.0
+geopandas==0.14.3
+git+https://${GIT_USER}:${GIT_PW}@bitbucket.org/geoville/geoville_aws_module/get/v1.0.zip@v1.0.0
+git+https://${GIT_USER}:${GIT_PW}@bitbucket.org/geoville/geoville_database_module/get/v1.0.zip@v1.0.0
+git+https://${GIT_USER}:${GIT_PW}@bitbucket.org/geoville/geoville_keycloak_module/get/v1.0.zip@v1.0.0
+git+https://${GIT_USER}:${GIT_PW}@bitbucket.org/geoville/geoville_order_mangement_module/get/v1.0.zip@v1.0.0
+git+https://${GIT_USER}:${GIT_PW}@bitbucket.org/geoville/geoville_vault_module/get/v1.0.zip@v1.0.0
+mangum==0.17.0
+pydantic[dotenv]==1.10.14
+python-multipart==0.0.6
+uvicorn[standard]==0.23.2

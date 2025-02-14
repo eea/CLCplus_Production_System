@@ -24,7 +24,7 @@ servers by leveraging robust authorization mechanisms.
 
 Keycloak's API provides a comprehensive set of endpoints required to perform essential authorization operations and flows.
 
-### 3. Service API
+### 3-4. Service and Products API
 
 The Python based API gateway sits between the client and a collection of backend
 services and serves as the entry point to the microservice infrastructure.
@@ -38,11 +38,11 @@ services, etc.). While the endpoints for processes are
 within the 'section' namespace, the retrieval of the products is within the
 'products' section of the API.
 
-### 4. Airflow
+### 5. Airflow
 
 Apache Airflow is a workflow management platform and is used to create data pipelines. This repository provides the configuratin of the airflow instance and the Airflow workers.
 
-### 5. Airflow DAGs
+### 6. Airflow DAGs
 
 This section contains the source codes of the Airflow Directed Acyclic Graphs (DAGs).
 A DAG (Directed Acyclic Graph) is the core concept of Airflow,
@@ -51,17 +51,17 @@ to say how they should run. To put it in a nutshell, a DAG is a Python based
 workflow description while each Task within this workflow can be a containerized
 application (Docker), a Bash Command or simply a Python function.
 
-### 6. Database
+### 7. Database
 
 Any modern backend solution needs a storage system to store data whilst processing particular tasks. As spatial information will be processed in the project, the tool chosen was a PostgreSQL database server with its extension PostGIS for spatial operations. A relational database model is required to persist the processed information in a structured manner. This directory provides database DDL files and database models.
 
-### 7. Monitoring & Logging
+### 8. Monitoring & Logging
 
 The system monitoring is based on the Grafana software. Grafana is a multi-platform analytics and visualization tool. It provides charts, graphs, metrics, logs, traces and for monitoring the health state of a system.
 
 The logging module is used to log and monitor all relevant messages of the backbone processing system. The moduel T module supports different log levels (INGO, WARNING, ERROR). It's written in Python and the module architecture is based on a message queueing system (RabbitMQ).
 
-### 8. Additional Python Modules
+### 9. Additional Python Modules
 
 The system architecture also includes helper functions and modules
 to avoid duplicated code and a modular microservice infrastructure.  
@@ -77,6 +77,6 @@ The modules are:
 * **Keycloack Module**:  
 The Keycloak Module is used to interact with Keycloak for Identiy and Access Management.
 
-#### 9. System Components (third party software licenses)
+#### 10. System Components (third party software licenses)
 
 List of all software modules and their licence models.
