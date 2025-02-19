@@ -1,6 +1,6 @@
 # Service API
 
-The GeoVille CLC+ 2021 Service API based on Python
+The GeoVille CLCplus Service API based on Python
 
 ---
 

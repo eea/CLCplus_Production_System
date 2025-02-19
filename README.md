@@ -1,4 +1,4 @@
-# CLCplus Backbone System 2021
+# CLCplus Backbone System
 
 CLCplus Backbone System and Data Dissemination API.
 
@@ -77,6 +77,6 @@ The modules are:
 * **Keycloack Module**:  
 The Keycloak Module is used to interact with Keycloak for Identiy and Access Management.
 
-#### 10. System Components (third party software licenses)
+### 10. System Components (third party software licenses)
 
 List of all software modules and their licence models.

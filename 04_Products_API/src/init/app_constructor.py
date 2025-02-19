@@ -26,8 +26,8 @@ logger = logging.getLogger('app_logger')
 # Definition of the OpenAPI documentation UI for the API
 ########################################################################################################################
 
-api = FastAPI(title='CLC+ Backbone API',
-              description='CLC+ Backbone Products API powered by GeoVille',
+api = FastAPI(title='CLCplus Backbone API',
+              description='CLCplus Backbone Products API powered by GeoVille',
               version='23.7',
               openapi_url=f'{cnf.PATH_PREFIX}/openapi.json',
               docs_url=f"{cnf.PATH_PREFIX}/v1",

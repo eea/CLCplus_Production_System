@@ -1,6 +1,6 @@
 # Products API
 
-The GeoVille CLC+ 2021 API based on Python
+The GeoVille CLCplus API based on Python
 
 ---
 
