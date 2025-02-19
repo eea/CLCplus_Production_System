@@ -20,12 +20,12 @@
 | Settings | Value |
 |--|--|
 |Document Title| Backbone System Manual: API |
-|Project Title| Copernicus Land Monitoring Service – CLCplus Backbone Production, including Raster and Vector Products based on Satellite Input Data from 2017/2018/2019|
+|Project Title| Copernicus Land Monitoring Service: Production of two CLCplus Backbone raster product updates for the reference years 2023 and 2025|
 |Document Author(s)| GAF AG and GeoVille |
 |Project Owner| Manuel Mayr (EEA) |
 |Project Manager| Fabian Berndt (GAF)|
 |Doc. Issue/Version| 2.0 |
-|Date| 23/05/2022 |
+|Date| 19/02/2025 |
 |Distribution List| Consortium and EEA |
 |Confidentiality| - |
 
