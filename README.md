@@ -10,6 +10,8 @@ CLCplus Backbone System and Data Dissemination API.
 
 This repository provides all components, descriptions, configurations, sources and manuals of the CLCplus backbone system and data dissemination API.
 
+The provided GitHub repositories contain the source code for each dockerised microservice, enabling reproducibility of the current (2023) IT system. However, additional resources, such as virtual machines and their configurations, are required and are not included. Refer to the README files and deliverables for further details on system dependencies and setup.
+
 ### 1. Documentation
 
 Product specification and user manual.
